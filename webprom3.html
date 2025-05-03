@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawanda's Prom Memories | Kingstorm-Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff6ec7;
+            --neon-blue: #00f3ff;
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff9d;
+            --neon-yellow: #fff700;
+            --dark-bg: #0f0f1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(157, 0, 255, 0.1), 
+                rgba(0, 243, 255, 0.1));
+            z-index: -1;
+            filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px var(--neon-pink), 
+                             0 0 30px var(--neon-blue);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(15, 15, 26, 0.7);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        section:hover {
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            border-bottom: 2px solid var(--neon-purple);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .media-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .media-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px var(--neon-pink);
+        }
+        
+        .media-item img, .media-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .media-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .like-count {
+            color: white;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .heart-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .heart-btn:hover {
+            transform: scale(1.2);
+            color: var(--neon-pink);
+        }
+        
+        .heart-btn.liked {
+            color: var(--neon-pink);
+            animation: heartBeat 0.5s;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .upload-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            border: 2px dashed var(--neon-green);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-section:hover {
+            background: rgba(0, 255, 157, 0.05);
+            border-color: var(--neon-yellow);
+        }
+        
+        .upload-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 110, 199, 0.3);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(255, 110, 199, 0.5);
+        }
+        
+        .upload-btn:active {
+            transform: translateY(0);
+        }
+        
+        #image-upload {
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-family: 'Pacifico', cursive;
+            color: var(--neon-yellow);
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px var(--neon-yellow);
+        }
+        
+        .neon-border {
+            position: relative;
+            padding: 1rem;
+        }
+        
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-yellow)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        /* Special Events Styles */
+        .royalty-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .royalty-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 280px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .royalty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-purple);
+            border-color: var(--neon-pink);
+        }
+        
+        .royalty-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
+            z-index: -1;
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .royalty-card:hover::before {
+            opacity: 0.5;
+        }
+        
+        .royalty-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--neon-yellow);
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 15px var(--neon-yellow);
+        }
+        
+        .royalty-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+        
+        .royalty-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crown-icon {
+            font-size: 2rem;
+            color: var(--neon-yellow);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--neon-blue), var(--neon-pink));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 1rem 2rem;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            position: relative;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--neon-blue);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .timeline-time {
+            font-weight: bold;
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--neon-purple);
+            top: 1.5rem;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        /* Dynamic background elements */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+        }
+        
+        .element-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--neon-pink);
+            top: 10%;
+            left: 5%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .element-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-blue);
+            bottom: 10%;
+            right: 5%;
+            animation: float 18s infinite ease-in-out reverse;
+        }
+        
+        .element-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--neon-yellow);
+            top: 50%;
+            left: 30%;
+            animation: float 12s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-elements">
+        <div class="bg-element element-1"></div>
+        <div class="bg-element element-2"></div>
+        <div class="bg-element element-3"></div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1>Kawanda's Prom Memories</h1>
+            <h2>9 June, 2025</h2>
+            <p>Relive the magic of our unforgettable night</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Prom Royalty Section -->
+        <section class="neon-border">
+            <h2>Prom Royalty</h2>
+            <div class="royalty-section">
+                <div class="royalty-card">
+                    <div class="crown-icon">👑</div>
+                    <h3 class="royalty-title">Prom Queen</h3>
+                    <img src="https://source.unsplash.com/random/300x300/?portrait,woman,formal" alt="Prom Queen" class="royalty-img">
+                    <h4 class="royalty-name">Naisanga Angel</h4>
+                    <p>"The night was absolutely magical!"</p>
+                </div>
+                <div class="royalty-card">
+                    <div class="crown-icon">👑</div>
+                    <h3 class="royalty-title">Prom King</h3>
+                    <img src="https://source.unsplash.com/random/300x300/?portrait,man,formal" alt="Prom King" class="royalty-img">
+                    <h4 class="royalty-name">Musitwa Ardrian Morgan</h4>
+                    <p>"Best night of high school!"</p>
+                </div>
+                <div class="royalty-card">
+                    <div class="crown-icon">🌟</div>
+                    <h3 class="royalty-title">Best Dressed</h3>
+                    <img src="https://source.unsplash.com/random/300x300/?fashion,formal" alt="Best Dressed" class="royalty-img">
+                    <h4 class="royalty-name">Kingstorm Josh</h4>
+                    <p>"So honored to win this award!"</p>
+                </div>
+                <div class="royalty-card">
+                    <div class="crown-icon">💃</div>
+                    <h3 class="royalty-title">Best Dancers</h3>
+                    <img src="https://source.unsplash.com/random/300x300/?couple,dancing" alt="Best Dancers" class="royalty-img">
+                    <h4 class="royalty-name">Dubai & Aminah</h4>
+                    <p>"We danced the night away!"</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Event Timeline Section -->
+        <section class="neon-border">
+            <h2>Event Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">7:00 PM</div>
+                        <h3 class="timeline-title">Grand Entrance</h3>
+                        <p>Students arrived in style with red carpet photos</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">7:30 PM</div>
+                        <h3 class="timeline-title">Welcome Dinner</h3>
+                        <p>Delicious three-course meal served in the ballroom</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">8:15 PM</div>
+                        <h3 class="timeline-title">Opening Dance</h3>
+                        <p>Everyone hit the dance floor as the DJ started the party</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">9:00 PM</div>
+                        <h3 class="timeline-title">Royalty Announcement</h3>
+                        <p>Prom King and Queen were crowned amid cheers</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">10:00 PM</div>
+                        <h3 class="timeline-title">Photo Booth Fun</h3>
+                        <p>Crazy props and memorable photos with friends</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">11:30 PM</div>
+                        <h3 class="timeline-title">Last Dance</h3>
+                        <p>Emotional final song to close out the night</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Photo Gallery Section -->
+        <section class="neon-border" id="photo-gallery">
+            <h2>Photo Gallery</h2>
+            <div class="gallery" id="image-gallery">
+                <!-- Sample images - these would be replaced with your actual prom photos -->
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?prom,dress" alt="Prom photo">
+                    <div class="media-info">
+                        <span class="like-count">124</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?dance,prom" alt="Prom photo">
+                    <div class="media-info">
+                        <span class="like-count">98</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?couple,prom" alt="Prom photo">
+                    <div class="media-info">
+                        <span class="like-count">156</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?party,prom" alt="Prom photo">
+                    <div class="media-info">
+                        <span class="like-count">87</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?ballroom,prom" alt="Prom photo">
+                    <div class="media-info">
+                        <span class="like-count">112</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?night,party" alt="Prom photo">
+                    <div class="media-info">
+                        <span class="like-count">76</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="upload-section">
+                <h3>Share Your Prom Memories</h3>
+                <p>Upload your favorite photos from the night</p>
+                <input type="file" id="image-upload" accept="image/*" multiple>
+                <button class="upload-btn" onclick="document.getElementById('image-upload').click()">Upload Photos</button>
+            </div>
+        </section>
+        
+        <!-- Video Gallery Section -->
+        <section class="neon-border" id="video-gallery">
+            <h2>Video Highlights</h2>
+            <div class="gallery" id="video-gallery">
+                <!-- Sample videos - these would be replaced with your actual prom videos -->
+                <div class="media-item">
+                    <video controls poster="https://source.unsplash.com/random/600x400/?prom,video">
+                        <source src="#" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-info">
+                        <span class="like-count">203</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <video controls poster="https://source.unsplash.com/random/600x400/?dance,video">
+                        <source src="#" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-info">
+                        <span class="like-count">178</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <video controls poster="https://source.unsplash.com/random/600x400/?party,video">
+                        <source src="#" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-info">
+                        <span class="like-count">245</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Special Moments Section -->
+        <section class="neon-border">
+            <h2>Special Moments</h2>
+            <div class="gallery">
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?prom,crown" alt="Crowning moment">
+                    <div class="media-info">
+                        <span class="like-count">189</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?prom,speech" alt="Principal's speech">
+                    <div class="media-info">
+                        <span class="like-count">132</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?prom,group" alt="Class group photo">
+                    <div class="media-info">
+                        <span class="like-count">221</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="https://source.unsplash.com/random/600x400/?prom,decorations" alt="Venue decorations">
+                    <div class="media-info">
+                        <span class="like-count">98</span>
+                        <button class="heart-btn">❤</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        Designed by Kigoonya Joshua Moses Kingstorm
+    </footer>
+    
+    <script>
+        // Like button functionality
+        document.querySelectorAll('.heart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const likeCount = this.previousElementSibling;
+                let count = parseInt(likeCount.textContent);
+                
+                if (this.classList.contains('liked')) {
+                    count--;
+                    this.classList.remove('liked');
+                } else {
+                    count++;
+                    this.classList.add('liked');
+                }
+                
+                likeCount.textContent = count;
+            });
+        });
+        
+        // Image upload functionality
+        document.getElementById('image-upload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const gallery = document.getElementById('image-gallery');
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.match('image.*')) continue;
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    const mediaItem = document.createElement('div');
+                    mediaItem.className = 'media-item';
+                    
+                    mediaItem.innerHTML = `
+                        <img src="${event.target.result}" alt="Uploaded prom photo">
+                        <div class="media-info">
+                            <span class="like-count">0</span>
+                            <button class="heart-btn">❤</button>
+                        </div>
+                    `;
+                    
+                    gallery.prepend(mediaItem);
+                    
+                    // Add click event to the new like button
+                    mediaItem.querySelector('.heart-btn').addEventListener('click', function() {
+                        const likeCount = this.previousElementSibling;
+                        let count = parseInt(likeCount.textContent);
+                        
+                        if (this.classList.contains('liked')) {
+                            count--;
+                            this.classList.remove('liked');
+                        } else {
+                            count++;
+                            this.classList.add('liked');
+                        }
+                        
+                        likeCount.textContent = count;
+                    });
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Dynamic background animation
+        document.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelector('.element-1').style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            document.querySelector('.element-2').style.transform = `translate(${x * -30}px, ${y * -30}px)`;
+            document.querySelector('.element-3').style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+        });
+        
+        // Royalty card hover effect
+        document.querySelectorAll('.royalty-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const colors = ['var(--neon-pink)', 'var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-green)'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                this.style.boxShadow = `0 0 20px ${randomColor}`;
+                this.style.borderColor = randomColor;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+                this.style.borderColor = 'transparent';
+            });
+        });
+    </script>
+</body>
+</html>
